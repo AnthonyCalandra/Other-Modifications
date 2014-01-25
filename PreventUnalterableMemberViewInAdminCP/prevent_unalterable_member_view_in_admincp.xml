@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<plugins>
+	<plugin active="1" executionorder="1" product="vbforum">
+		<title>Prevent Unalterable Member View In AdminCP</title>
+		<hookname>useradmin_edit_start</hookname>
+		<phpcode><![CDATA[
+        // Check for 'undeletable/unalterable' users
+	if (is_unalterable_user($vbulletin->GPC['userid'])) {
+		print_stop_message('user_is_protected_from_alteration_by_undeletableusers_var');
+	}
+		]]></phpcode>
+	</plugin>
+</plugins>
